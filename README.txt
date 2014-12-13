@@ -3,7 +3,7 @@ This program will eventually fetch LoL data using Riot's API using a command lin
 If you have ideas, e-mail me at ehamilton13@gmail.com
 
 Current commands: 
-	-None. Still implementing base.
+	1. None. Still implementing base.
 	
 Planned features: 
 	-help
