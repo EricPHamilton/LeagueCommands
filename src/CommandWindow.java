@@ -62,6 +62,7 @@ public class CommandWindow {
 					String cmd = txtBox.getText();
 					txtBox.setText("");
 					addToTextPane(cmd);
+					countLinesInTextPane();
 				}
 			}
 		});
@@ -83,6 +84,11 @@ public class CommandWindow {
 	private void addToTextPane(String cmd) {
 		String previousText = textPane.getText();
 		String futureText = previousText;
+		
+		if (countLinesInTextPane() > 16) {
+			futureText = futureText.substring(futureText.indexOf('\n') + 1);
+		}
+		
 		if (!previousText.equals("")) {
 			futureText += "\n";
 		}
@@ -90,5 +96,12 @@ public class CommandWindow {
 		//TODO: Change to command output.
 		futureText += cmd;
 		textPane.setText(futureText);
+
+	}
+	
+	//18 should be max
+	private int countLinesInTextPane() {
+		String[] lines = textPane.getText().split("\n");
+		return lines.length;
 	}
 }
