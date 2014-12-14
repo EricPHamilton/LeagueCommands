@@ -4,6 +4,7 @@ If you have ideas, e-mail me at ehamilton13@gmail.com
 
 Current commands: 
 	1. clear - clears window of text.
+	2. getchampid <name> - Returns the LoL ID of a given champion
 	
 Planned features: 
 	-help
@@ -26,8 +27,6 @@ Planned features:
 		-Returns base CD and when applicable, damage dealt/healed/sheilded.
 	-matchhistory <Username> <Region>
 		-Returns stats based on users match history (common champ, gamemode, etc.)
-	-getchampid <name>
-		-Returns the LoL ID of a given champion
 	-getrank <Summoner> <Region>
 		-Returns solo queue rank of summoner. Region defaults to NA
 	-summid <Username> <Region>
