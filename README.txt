@@ -5,6 +5,7 @@ If you have ideas, e-mail me at ehamilton13@gmail.com
 Current commands: 
 	1. clear - clears window of text.
 	2. getchampid <name> - Returns the LoL ID of a given champion
+	3. setdefaultregion <region> - Sets the default region for summoner data commands.
 	
 Planned features: 
 	-help
@@ -35,6 +36,4 @@ Planned features:
 		-Checks for program updates 
 	-goldeff <ItemName>
 		-Calculates gold efficiency of a certain item
-	-setdefaultregion <region>
-		-Sets the default region for above commands
 	-Ideas are very welcome!
