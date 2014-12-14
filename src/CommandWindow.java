@@ -1,12 +1,8 @@
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import java.awt.BorderLayout;
-import javax.swing.JPanel;
-import javax.swing.BoxLayout;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import java.awt.Color;
 import java.awt.Font;

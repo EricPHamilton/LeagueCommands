@@ -1,7 +1,7 @@
 
 public class Command {
 	//This will expand as more commands get implemented
-	public static String[] commandList = {"clear", "getchampid"};
+	public static String[] commandList = {"clear", "getchampid", "setdefaultregion"};
 	public String[] cmd;
 	
 	public Command(String cmd) {
@@ -17,9 +17,12 @@ public class Command {
 				if (id != -1) {
 					CommandWindow.addToTextPane("" + id);
 				}
+			} else if (cmd[0].equals("setdefaultregion")) {
+				String reg = cmd[1];
+				Region.setDefaultRegion(new Region(reg));
 			}
 		} else {
-			CommandWindow.addToTextPane("Not a valid command.");
+			Log.write("Not a valid command.");
 		}
 	}
 	
