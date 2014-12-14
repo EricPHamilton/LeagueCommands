@@ -3,7 +3,7 @@ This program will eventually fetch LoL data using Riot's API using a command lin
 If you have ideas, e-mail me at ehamilton13@gmail.com
 
 Current commands: 
-	1. None. Still implementing base.
+	1. clear - clears window of text.
 	
 Planned features: 
 	-help
@@ -30,12 +30,12 @@ Planned features:
 		-Returns the LoL ID of a given champion
 	-getrank <Summoner> <Region>
 		-Returns solo queue rank of summoner. Region defaults to NA
-	-clear
-		-Clears text in display.
 	-summid <Username> <Region>
 		-Returns the summoner's ID.
 	-update
 		-Checks for program updates 
 	-goldeff <ItemName>
 		-Calculates gold efficiency of a certain item
+	-setdefaultregion <region>
+		-Sets the default region for above commands
 	-Ideas are very welcome!

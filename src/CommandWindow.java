@@ -61,8 +61,10 @@ public class CommandWindow {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					String cmd = txtBox.getText();
 					txtBox.setText("");
-					addToTextPane(cmd);
-					countLinesInTextPane();
+
+					Command newCmd = new Command(cmd);
+					newCmd.execute();
+
 				}
 			}
 		});
@@ -81,7 +83,7 @@ public class CommandWindow {
 		
 	}
 
-	private void addToTextPane(String cmd) {
+	public static void addToTextPane(String cmd) {
 		String previousText = textPane.getText();
 		String futureText = previousText;
 		
@@ -100,8 +102,12 @@ public class CommandWindow {
 	}
 	
 	//18 should be max
-	private int countLinesInTextPane() {
+	private static int countLinesInTextPane() {
 		String[] lines = textPane.getText().split("\n");
 		return lines.length;
+	}
+	
+	public static void clearTextPane() {
+		textPane.setText("");
 	}
 }
