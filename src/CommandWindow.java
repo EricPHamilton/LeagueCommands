@@ -2,12 +2,17 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
 import java.awt.BorderLayout;
+
 import javax.swing.JTextPane;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 
 public class CommandWindow {
@@ -77,6 +82,11 @@ public class CommandWindow {
 		textPane.setBackground(new Color(204, 204, 204));
 		frame.getContentPane().add(textPane, BorderLayout.CENTER);
 		
+		frame.addWindowListener(new WindowAdapter() {
+			public void windowOpened(WindowEvent e) {
+				txtBox.requestFocus();
+			}
+		});
 	}
 
 	public static void addToTextPane(String cmd) {

@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class Command {
 	//This will expand as more commands get implemented
-	public static String[] commandList = {"clear", "getchampid", "setdefaultregion", "summid", "getdefaultregion"};
+	public static String[] commandList = {"clear", "getchampid", "setdefaultregion", "summid", "getdefaultregion", "getrank"};
 	public String[] cmd;
 	
 	public Command(String cmd) {
@@ -27,30 +27,19 @@ public class Command {
 				String reg = cmd[1];
 				Region.setDefaultRegion(new Region(reg));
 			} else if (cmd[0].equals("summid")) {
-				String summName = cmd[1];
-				
-				//if a region is provided...
-				String reg;
-				if (cmd.length > 2) { 
-					reg = cmd[2].toLowerCase();
-				} else {
-					reg = Region.getDefaultRegion().toString().toLowerCase();
-				}
-				
-				String url = "https://" + reg + ".api.pvp.net/api/lol/" + reg + "/v1.4/summoner/by-name/" + summName + "?api_key=" + APIKey.getKey();
-				
-				try {
-					JSONObject summID = JSONUtils.getJSON(url);
-					
-					JSONObject summIDChildObject = (JSONObject)summID.get(summName);
-					String id = summIDChildObject.getString("id");
+				Summoner summ = new Summoner(cmd[1].toLowerCase());
+				int id = summ.id;
+				if (id != -1) {
 					Log.write("Summoner ID: " + id);
-				} catch (IOException | JSONException e) {
-					Log.write("Summoner Name not found. Check region and summName.");
-					e.printStackTrace();
 				}
 			} else if (cmd[0].equals("getdefaultregion")) {
 				Log.write("Default Region: " + Region.getDefaultRegion().toString());
+			} else if (cmd[0].equals("getrank")) {
+				Summoner summ = new Summoner(cmd[1].toLowerCase());
+				String rank = summ.getRank();
+				if (!rank.equals("")) {
+					Log.write(rank);
+				}	
 			}
 		} else {
 			Log.write("Not a valid command.");
