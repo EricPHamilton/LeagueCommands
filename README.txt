@@ -8,6 +8,8 @@ Current commands:
 	3. setdefaultregion <region> - Sets the default region for summoner data commands.
 	4. getdefaultregion - Returns the default region set in 'regions.txt'
 	5. summid <name> <region> - Gets summID of summoner name and region, region not needed if set with CMD(3).
+	6. getrank <name> - Gets rank of summoner name from default region.
+		-TODO: Test with different region, only tested command with default region.
 	
 Planned features: 
 	-help
@@ -30,8 +32,6 @@ Planned features:
 		-Returns base CD and when applicable, damage dealt/healed/sheilded.
 	-matchhistory <Username> <Region>
 		-Returns stats based on users match history (common champ, gamemode, etc.)
-	-getrank <Summoner> <Region>
-		-Returns solo queue rank of summoner. Region defaults to NA
 	-update
 		-Checks for program updates 
 	-goldeff <ItemName>
