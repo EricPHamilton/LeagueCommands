@@ -1,4 +1,4 @@
-This program will eventually fetch LoL data using Riot's API using a command line interface. 
+This program will eventually fetch LoL data using Riot's API using CLI. 
 
 If you have ideas, e-mail me at ehamilton13@gmail.com
 
@@ -6,6 +6,7 @@ Current commands:
 	1. clear - clears window of text.
 	2. getchampid <name> - Returns the LoL ID of a given champion
 	3. setdefaultregion <region> - Sets the default region for summoner data commands.
+	4. summid <name> <region> - Gets summID of summoner name and region, region not needed if set with CMD(3).
 	
 Planned features: 
 	-help
@@ -30,8 +31,6 @@ Planned features:
 		-Returns stats based on users match history (common champ, gamemode, etc.)
 	-getrank <Summoner> <Region>
 		-Returns solo queue rank of summoner. Region defaults to NA
-	-summid <Username> <Region>
-		-Returns the summoner's ID.
 	-update
 		-Checks for program updates 
 	-goldeff <ItemName>

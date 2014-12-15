@@ -1,4 +1,8 @@
+import java.awt.Color;
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
@@ -41,5 +45,19 @@ public class Region {
 		} else {
 			Log.write("Your region was not recognized. Try again with a valid region.");
 		}
+	}
+	
+	public static Region getDefaultRegion() {
+		FileReader file;
+		try {
+			file = new FileReader("region.txt");
+			BufferedReader read = new BufferedReader(file);
+			
+			return new Region(read.readLine());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;	
 	}
 }
