@@ -6,7 +6,8 @@ Current commands:
 	1. clear - clears window of text.
 	2. getchampid <name> - Returns the LoL ID of a given champion
 	3. setdefaultregion <region> - Sets the default region for summoner data commands.
-	4. summid <name> <region> - Gets summID of summoner name and region, region not needed if set with CMD(3).
+	4. getdefaultregion - Returns the default region set in 'regions.txt'
+	5. summid <name> <region> - Gets summID of summoner name and region, region not needed if set with CMD(3).
 	
 Planned features: 
 	-help

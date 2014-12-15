@@ -7,7 +7,7 @@ import org.json.JSONObject;
 
 public class Command {
 	//This will expand as more commands get implemented
-	public static String[] commandList = {"clear", "getchampid", "setdefaultregion", "summid"};
+	public static String[] commandList = {"clear", "getchampid", "setdefaultregion", "summid", "getdefaultregion"};
 	public String[] cmd;
 	
 	public Command(String cmd) {
@@ -49,7 +49,8 @@ public class Command {
 					Log.write("Summoner Name not found. Check region and summName.");
 					e.printStackTrace();
 				}
-				
+			} else if (cmd[0].equals("getdefaultregion")) {
+				Log.write("Default Region: " + Region.getDefaultRegion().toString());
 			}
 		} else {
 			Log.write("Not a valid command.");
