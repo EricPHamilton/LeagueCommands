@@ -101,7 +101,7 @@ public class Summoner {
 		if (Desktop.isDesktopSupported()) {
 			Desktop d = Desktop.getDesktop();
 			try {
-				d.browse(new URI(reg.toURLString() + ".op.gg/summoner/userName=" + name));
+				d.browse(new URI("http://" + reg.toURLString() + ".op.gg/summoner/userName=" + name));
 			} catch (URISyntaxException | IOException e) {
 				Log.write("IOException or URLSyntaxException. Check summoner name + region.");
 				e.printStackTrace();

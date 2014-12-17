@@ -12,7 +12,6 @@ Current commands:
 		-TODO: Test with different region, only tested command with default region.
 	7. lolking <name> <region> - Opens lolking URL of summoner/region.
 	8. opgg <name> <region> - Opens opgg URL of summoner/region
-		-TODO: Currently not working. op.gg doesn't like the URL i'm giving it. It's implemented though.
 	
 Planned features: 
 	-help
@@ -23,14 +22,10 @@ Planned features:
 		-Will open League wiki page associated with <name> champion.
 	-getstat <champ name> <stat>
 		-Will display given stat (armor/l, base armor, base AD, etc.) to output.
-	-opgg <Username> <Region>
-		-Opens the op.gg webpage associated with given data. Region defaults to NA
 	-opgg currentgame <Username> <Region>
 		-Opens up op.gg's live game page.
-	-lolking <Username> <Region>
-		-Same as command opgg, but returns lolking page.
 	-abilitystats <champion> <button>
-		-Returns useful information based on champ spell (Cooldowns at certain ranks, scalings, mana cost
+		-Returns useful information based on champ spell (Cooldowns at certain ranks, scalings, mana cost)
 	-summspellstats <spell>
 		-Returns base CD and when applicable, damage dealt/healed/sheilded.
 	-matchhistory <Username> <Region>
