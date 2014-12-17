@@ -10,6 +10,9 @@ Current commands:
 	5. summid <name> <region> - Gets summID of summoner name and region, region not needed if set with CMD(3).
 	6. getrank <name> - Gets rank of summoner name from default region.
 		-TODO: Test with different region, only tested command with default region.
+	7. lolking <name> <region> - Opens lolking URL of summoner/region.
+	8. opgg <name> <region> - Opens opgg URL of summoner/region
+		-TODO: Currently not working. op.gg doesn't like the URL i'm giving it. It's implemented though.
 	
 Planned features: 
 	-help

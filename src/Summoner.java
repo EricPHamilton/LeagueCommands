@@ -1,5 +1,8 @@
+import java.awt.Desktop;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -78,5 +81,33 @@ public class Summoner {
 			
 		return "";
 		
+	}
+	
+	public void openLolking() {
+		if (Desktop.isDesktopSupported()) {
+			Desktop d = Desktop.getDesktop();
+			try {
+				d.browse(new URI("http://www.lolking.net/summoner/" + reg.toURLString() + "/" + id));
+			} catch (IOException | URISyntaxException e) {
+				Log.write("IOException or URLSyntaxException. Check summoner name + region.");
+				e.printStackTrace();
+			}
+		} else {
+			Log.write("This command is not supported by your OS.");
+		}
+	}
+	
+	public void openOPGG() {
+		if (Desktop.isDesktopSupported()) {
+			Desktop d = Desktop.getDesktop();
+			try {
+				d.browse(new URI(reg.toURLString() + ".op.gg/summoner/userName=" + name));
+			} catch (URISyntaxException | IOException e) {
+				Log.write("IOException or URLSyntaxException. Check summoner name + region.");
+				e.printStackTrace();
+			}
+		} else {
+			Log.write("This command is not supported by your OS.");
+		}
 	}
 }

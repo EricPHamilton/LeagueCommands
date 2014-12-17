@@ -30,6 +30,10 @@ public class Region {
 		return name;
 	}
 	
+	public String toURLString() {
+		return name.toLowerCase();
+	}
+	
 	@SuppressWarnings("resource")
 	public static void setDefaultRegion(Region reg) {
 		if(reg.isValidRegion()) {

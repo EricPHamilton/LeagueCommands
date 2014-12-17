@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 public class Command {
 	//This will expand as more commands get implemented
-	public static String[] commandList = {"clear", "getchampid", "setdefaultregion", "summid", "getdefaultregion", "getrank"};
+	public static String[] commandList = {"clear", "getchampid", "setdefaultregion", "summid", "getdefaultregion", "getrank", "opgg", "lolking"};
 	public String[] cmd;
 	
 	//previousCommands.get(0) will return first command...
@@ -46,6 +46,18 @@ public class Command {
 				if (!rank.equals("")) {
 					Log.write(rank);
 				}	
+			} else if (cmd[0].equals("opgg") || cmd[0].equals("lolking")) {
+				Summoner summ;
+				if (cmd.length > 2) { //If region is provided...
+					summ = new Summoner(cmd[1].toLowerCase(), new Region(cmd[2]));
+				} else {
+					summ = new Summoner(cmd[1].toLowerCase());
+				}
+				if (cmd[0].equals("opgg")) {
+					summ.openOPGG();
+				} else {
+					summ.openLolking();
+				}
 			}
 		} else {
 			Log.write("Not a valid command.");
