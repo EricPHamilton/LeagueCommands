@@ -18,7 +18,8 @@ import java.awt.event.WindowEvent;
 public class CommandWindow {
 
 	private JFrame frame;
-
+	private static int cmdIndex = -1;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -64,8 +65,28 @@ public class CommandWindow {
 					txtBox.setText("");
 
 					Command newCmd = new Command(cmd);
+					
+					Command.addPreviousCommand(newCmd);
+					cmdIndex = Command.previousCommands.size();
+					
 					newCmd.execute();
 
+				} else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) {
+					//goUp is true if user pressed "up" instead of "down"
+					boolean goUp = e.getKeyCode() == KeyEvent.VK_UP; 
+					
+					if (goUp) {
+						if (cmdIndex - 1 >= 0) {
+							cmdIndex--;
+							txtBox.setText(Command.getCommand(cmdIndex).toString());
+						}
+					} else {
+						if (cmdIndex + 1 <= Command.previousCommands.size()-1) {
+							cmdIndex++;
+							txtBox.setText(Command.getCommand(cmdIndex).toString());
+						}
+					}
+					
 				}
 			}
 		});
