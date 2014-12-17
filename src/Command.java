@@ -8,7 +8,28 @@ import org.json.JSONObject;
 
 public class Command {
 	//This will expand as more commands get implemented
-	public static String[] commandList = {"clear", "getchampid", "setdefaultregion", "summid", "getdefaultregion", "getrank", "opgg", "lolking"};
+	//Add more commands IN ALPHABETICAL ORDER.
+	public static String[] commandList = {"clear", "getchampid", "getdefaultregion", "getrank", "lolking", "opgg", "setdefaultregion", "summid"};
+	
+	public static String[] commandHelp = {"Clears console and erases previous commands.", //Clear
+										"Grabs the ID provided a champion name.", //getchampid
+										"Gets the default region specified in the filesystem.",//getdefaultregion
+										"Gets the rank of the given summoner.", //getrank
+										"Displays the lolking page of the given summoner.",//lolking
+										"Displays the op.gg page of the given summoner.", //opgg
+										"Sets a default region in the filesystem.",//setdefaultregion
+										"Displays a summoner's ID number."//summid
+										};
+	public static String[] commandUsage = {"clear", 
+										"getchampid <championName>",
+										"getdefaultregion",
+										"getrank <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
+										"lolking <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
+										"opgg <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
+										"setdefaultregion <region>. Region can be: BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR",
+										"summid <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
+	};
+	
 	public String[] cmd;
 	
 	//previousCommands.get(0) will return first command...
