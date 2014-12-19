@@ -14,10 +14,9 @@ Current commands:
 	8. opgg <name> <region> - Opens opgg URL of summoner/region.
 	9. help - Lists all commands and descriptions.
 	10. help <command> - Lists usage and description for given command.
+	11. champwiki <champion> - Opens the lolwiki of given champion.
 	
 Planned features: 
-	-getchamp <name>
-		-Will open League wiki page associated with <name> champion.
 	-getstat <champ name> <stat>
 		-Will display given stat (armor/l, base armor, base AD, etc.) to output.
 	-opgg currentgame <Username> <Region>

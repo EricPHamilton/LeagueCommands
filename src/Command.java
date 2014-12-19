@@ -9,9 +9,10 @@ import org.json.JSONObject;
 public class Command {
 	//This will expand as more commands get implemented
 	//Add more commands IN ALPHABETICAL ORDER.
-	public static String[] commandList = {"clear", "getchampid", "getdefaultregion", "getrank", "help", "lolking", "opgg", "setdefaultregion", "summid"};
+	public static String[] commandList = {"champwiki", "clear", "getchampid", "getdefaultregion", "getrank", "help", "lolking", "opgg", "setdefaultregion", "summid"};
 	
-	public static String[] commandHelp = {"Clears console and erases previous commands.", //Clear
+	public static String[] commandHelp = {"Displays the lolwiki page of the given champion", //getchampwiki
+										"Clears console and erases previous commands.", //Clear
 										"Grabs the ID provided a champion name.", //getchampid
 										"Gets the default region specified in the filesystem.",//getdefaultregion
 										"Gets the rank of the given summoner.", //getrank
@@ -21,7 +22,8 @@ public class Command {
 										"Sets a default region in the filesystem.",//setdefaultregion
 										"Displays a summoner's ID number."//summid
 										};
-	public static String[] commandUsage = {"clear", 
+	public static String[] commandUsage = {"champwiki <championName>",
+										"clear", 
 										"getchampid <championName>",
 										"getdefaultregion",
 										"getrank <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
@@ -99,6 +101,9 @@ public class Command {
 						Log.write(commandList[i] + " - " + commandHelp[i]);
 					}
 				}
+			} else if (cmd[0].equals("champwiki")) {
+				Champion champ = new Champion(cmd[1]);
+				champ.openWikiPage();
 			}
 		} else {
 			Log.write("Not a valid command.");
