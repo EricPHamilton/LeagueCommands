@@ -9,12 +9,13 @@ import org.json.JSONObject;
 public class Command {
 	//This will expand as more commands get implemented
 	//Add more commands IN ALPHABETICAL ORDER.
-	public static String[] commandList = {"clear", "getchampid", "getdefaultregion", "getrank", "lolking", "opgg", "setdefaultregion", "summid"};
+	public static String[] commandList = {"clear", "getchampid", "getdefaultregion", "getrank", "help", "lolking", "opgg", "setdefaultregion", "summid"};
 	
 	public static String[] commandHelp = {"Clears console and erases previous commands.", //Clear
 										"Grabs the ID provided a champion name.", //getchampid
 										"Gets the default region specified in the filesystem.",//getdefaultregion
 										"Gets the rank of the given summoner.", //getrank
+										"Lists what each command does.",
 										"Displays the lolking page of the given summoner.",//lolking
 										"Displays the op.gg page of the given summoner.", //opgg
 										"Sets a default region in the filesystem.",//setdefaultregion
@@ -24,6 +25,7 @@ public class Command {
 										"getchampid <championName>",
 										"getdefaultregion",
 										"getrank <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
+										"help <command>.",
 										"lolking <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
 										"opgg <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
 										"setdefaultregion <region>. Region can be: BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR",
@@ -78,6 +80,24 @@ public class Command {
 					summ.openOPGG();
 				} else {
 					summ.openLolking();
+				}
+			} else if (cmd[0].equals("help")) {
+				if (cmd.length > 1) { //If they provided a command to be helped with.
+					Command needHelpWith = new Command(cmd[1]);
+					if (needHelpWith.isValidCommand()) {
+						for (int i = 0 ; i < commandList.length ; i++) {
+							if (needHelpWith.cmd[0].equals(commandList[i])) {
+								Log.write(commandList[i] + " - " + commandHelp[i]);
+								Log.write("Usage: " + commandUsage[i]);
+							}
+						}
+					} else {
+						Log.write("You provided an invalid command as an argument.");
+					}
+				} else {
+					for (int i = 0 ; i < commandList.length ; i++) {
+						Log.write(commandList[i] + " - " + commandHelp[i]);
+					}
 				}
 			}
 		} else {
