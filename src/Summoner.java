@@ -55,6 +55,7 @@ public class Summoner {
 		String urlReg = reg.toString().toLowerCase();
 		String tier = ""; 
 		String div = "";
+		String lp = "";
 		
 		if (this.id != -1) { //If there was an error finding the summonerID
 			try {
@@ -66,8 +67,10 @@ public class Summoner {
 				
 				JSONArray entr = firstObj.getJSONArray("entries");
 				div = entr.getJSONObject(0).getString("division");
+				lp = entr.getJSONObject(0).getString("leaguePoints");
 				
-				return (name + " is " + tier + " " + div);
+				
+				return (name + " is " + tier + " " + div + ", " + lp + " LP.");
 			} catch (IOException e) {
 				Log.write("Summ name/region combo not found for rank.");
 				e.printStackTrace();
