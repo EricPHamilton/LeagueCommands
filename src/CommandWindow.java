@@ -19,6 +19,7 @@ public class CommandWindow {
 
 	private JFrame frame;
 	private static int cmdIndex = -1;
+	private final static int pixelsHeightPerLine = 15;
 	
 	/**
 	 * Launch the application.
@@ -114,8 +115,12 @@ public class CommandWindow {
 		String previousText = textPane.getText();
 		String futureText = previousText;
 		
-		if (countLinesInTextPane() > 16) {
-			futureText = futureText.substring(futureText.indexOf('\n') + 1);
+		int windowHeight = textPane.getHeight();
+		int maxLines = windowHeight / pixelsHeightPerLine - 1;
+		if (countLinesInTextPane() > maxLines) {
+			for (int i = countLinesInTextPane() - maxLines ; i > 0 ; i--) { //Deletes the exact amnt of lines we need for next output to show up.
+				futureText = futureText.substring(futureText.indexOf('\n') + 1);
+			}
 		}
 		
 		if (!previousText.equals("")) {
