@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -9,26 +10,30 @@ import org.json.JSONObject;
 public class Command {
 	//This will expand as more commands get implemented
 	//Add more commands IN ALPHABETICAL ORDER.
-	public static String[] commandList = {"champwiki", "clear", "getchampid", "getdefaultregion", "getrank", "help", "lolking", "opgg", "setdefaultregion", "summid"};
+	public static String[] commandList = {"champwiki", "clear", "clearnotes", "getchampid", "getdefaultregion", "getrank", "help", "lolking", "note", "opgg", "setdefaultregion", "summid"};
 	
 	public static String[] commandHelp = {"Displays the lolwiki page of the given champion", //getchampwiki
 										"Clears console and erases previous commands.", //Clear
+										"Clears all notes.", //clearnotes
 										"Grabs the ID provided a champion name.", //getchampid
 										"Gets the default region specified in the filesystem.",//getdefaultregion
 										"Gets the rank of the given summoner.", //getrank
-										"Lists what each command does.",
+										"Lists what each command does.", //help
 										"Displays the lolking page of the given summoner.",//lolking
+										"Adds note to a note file", //note
 										"Displays the op.gg page of the given summoner.", //opgg
 										"Sets a default region in the filesystem.",//setdefaultregion
 										"Displays a summoner's ID number."//summid
 										};
 	public static String[] commandUsage = {"champwiki <championName>",
 										"clear", 
+										"clearnotes",
 										"getchampid <championName>",
 										"getdefaultregion",
 										"getrank <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
 										"help <command>.",
 										"lolking <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
+										"note <message>",
 										"opgg <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
 										"setdefaultregion <region>. Region can be: BR, EUNE, EUW, KR, LAN, LAS, NA, OCE, RU, TR",
 										"summid <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
@@ -104,6 +109,17 @@ public class Command {
 			} else if (cmd[0].equals("champwiki")) {
 				Champion champ = new Champion(cmd[1]);
 				champ.openWikiPage();
+			} else if (cmd[0].equals("note")) {
+				String note = "";
+				for (int i = 1 ; i < cmd.length ; i++) {
+					note += cmd[i] + " ";
+				}
+				File f = new File("notes.txt");
+				Log.writeToFile(note, f);
+				Log.write("Note written.");
+			} else if (cmd[0].equals("clearnotes")) {
+				Log.clearFile(new File("notes.txt"));
+				Log.write("Notes cleared.");
 			}
 		} else {
 			Log.write("Not a valid command.");

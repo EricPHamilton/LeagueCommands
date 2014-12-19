@@ -15,6 +15,8 @@ Current commands:
 	9. help - Lists all commands and descriptions.
 	10. help <command> - Lists usage and description for given command.
 	11. champwiki <champion> - Opens the lolwiki of given champion.
+	12. note <Note> - Allows to keep track of notes. (Ex. Don't dive under tower lvl 1).
+	13. clearnotes - Clears all notes.
 	
 Planned features: 
 	-getstat <champ name> <stat>
