@@ -126,32 +126,6 @@ public class ChampionList {
 		"429 - Kalista, the Spear of Vengeance",
 	};
 	
-	public static int getID(Champion champ) {
-		String name = champ.name.toLowerCase();
-		String line = "";
-		for (String s : championList) {
-			s = s.toLowerCase();
-			if (s.contains(name)) {
-				line = s;
-			}
-		}
-		if(line != "") {
-			String[] partsOfLine = line.split(" ");
-			int id = Integer.parseInt(partsOfLine[0]);
-			return id;
-		} else {
-			return -1;
-		}
-	}
-	
-	public static String getDefString(Champion champ) {
-		String name = champ.name;
-		for (String s : championList) {
-			if (s.contains(name)) {
-				return s;
-			}
-		}
-		return null;
-	}
+
 	
 }

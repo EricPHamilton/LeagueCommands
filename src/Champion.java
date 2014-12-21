@@ -3,6 +3,10 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Iterator;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 
@@ -14,15 +18,43 @@ public class Champion {
 	
 	public Champion (String name) {
 		this.name = name;
-		this.id = ChampionList.getID(this);
+		this.id = getID();
 		if (id == -1) {
 			Log.write("Unable to find champion.");
 		}
-		this.defString = ChampionList.getDefString(this);
+		this.defString = getDefString();
 	}
 	
 	public String toString() {
 		return defString;
+	}
+	
+	public int getID() {
+		String name = this.name.toLowerCase();
+		String line = "";
+		for (String s : ChampionList.championList) {
+			s = s.toLowerCase();
+			if (s.contains(name)) {
+				line = s;
+			}
+		}
+		if(line != "") {
+			String[] partsOfLine = line.split(" ");
+			int id = Integer.parseInt(partsOfLine[0]);
+			return id;
+		} else {
+			return -1;
+		}
+	}
+	
+	public String getDefString() {
+		String name = this.name;
+		for (String s : ChampionList.championList) {
+			if (s.contains(name)) {
+				return s;
+			}
+		}
+		return null;
 	}
 	
 	public void openWikiPage() {
@@ -37,5 +69,28 @@ public class Champion {
 		} else {
 			Log.write("This command is not supported by your OS.");
 		}
+	}
+	
+	//Used for making calls to the DDragon API.
+	public static String getAPIChampName(Champion champ) throws JSONException, IOException {
+		int idOfChamp = champ.id;
+		
+		JSONObject allData = JSONUtils.getJSON("http://ddragon.leagueoflegends.com/cdn/4.20.1/data/en_US/champion.json");
+		
+		JSONObject jsonChildObject = (JSONObject)allData.get("data");
+		Iterator it = jsonChildObject.keys();
+		String key = null;
+		
+		String nameOfChampWithSameID = null;
+		while (it.hasNext()) {
+			key = (String)it.next();
+			int id = Integer.parseInt(((JSONObject)jsonChildObject.get(key)).get("key").toString());
+			
+			if (id == idOfChamp) {
+				nameOfChampWithSameID = (((JSONObject)jsonChildObject.get(key)).get("id").toString());
+			}
+		}
+		
+		return nameOfChampWithSameID;
 	}
 }
