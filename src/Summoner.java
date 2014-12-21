@@ -13,17 +13,20 @@ public class Summoner {
 	String name; 
 	int id;
 	Region reg;
+	int level;
 	
 	public Summoner (String name, Region reg) {
 		this.name = name;
 		this.reg = reg;
 		this.id = this.getSummonerID();
+		this.level = this.getLevel();
 	}
 	
 	public Summoner (String name) {
 		this.name = name;
 		this.reg = Region.getDefaultRegion();
 		this.id = this.getSummonerID();
+		this.level = this.getLevel();
 	}
 	
 	public int getSummonerID() {
@@ -32,7 +35,7 @@ public class Summoner {
 		
 		int id = -1;
 		
-		String url = "https://" + urlRegion + ".api.pvp.net/api/lol/" + urlRegion + "/v1.4/summoner/by-name/" + summName + "?api_key=" + APIKey.getKey();
+		String url = "https://" + urlRegion + ".api.pvp.net/api/lol/" + urlRegion + "/v1.4/summoner/by-name/" + this.name + "?api_key=" + APIKey.getKey();
 		
 		try {
 			JSONObject summID = JSONUtils.getJSON(url);
@@ -51,8 +54,31 @@ public class Summoner {
 		return id;
 	}
 	
+	public int getLevel() {
+		String urlReg = reg.toURLString();
+		int level = 0;
+		
+		String url = "https://" + urlReg + ".api.pvp.net/api/lol/" + urlReg + "/v1.4/summoner/by-name/" + this.name + "?api_key=" + APIKey.getKey();
+	
+		try {
+			JSONObject levelObj = JSONUtils.getJSON(url);
+			
+			JSONObject levelChildObject = (JSONObject)levelObj.get(this.name);
+			String levelString = levelChildObject.getString("summonerLevel");
+			level = Integer.parseInt(levelString);
+		} catch (IOException e) {
+			Log.write("Summ name/region combo not found for level.");
+			e.printStackTrace();
+		} catch (JSONException e) {
+			Log.write("JSONException. Report on thread please with command that causes this to occur.");
+			e.printStackTrace();
+		}
+		
+		return level;
+	}
+	
 	public String getRank() {
-		String urlReg = reg.toString().toLowerCase();
+		String urlReg = reg.toURLString();
 		String tier = ""; 
 		String div = "";
 		String lp = "";

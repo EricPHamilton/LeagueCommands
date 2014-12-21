@@ -10,13 +10,14 @@ import org.json.JSONObject;
 public class Command {
 	//This will expand as more commands get implemented
 	//Add more commands IN ALPHABETICAL ORDER.
-	public static String[] commandList = {"champwiki", "clear", "clearnotes", "getchampid", "getdefaultregion", "getrank", "help", "lolking", "note", "opgg", "setdefaultregion", "summid"};
+	public static String[] commandList = {"champwiki", "clear", "clearnotes", "getchampid", "getdefaultregion", "getlevel", "getrank", "help", "lolking", "note", "opgg", "setdefaultregion", "summid"};
 	
 	public static String[] commandHelp = {"Displays the lolwiki page of the given champion", //getchampwiki
 										"Clears console and erases previous commands.", //Clear
 										"Clears all notes.", //clearnotes
 										"Grabs the ID provided a champion name.", //getchampid
 										"Gets the default region specified in the filesystem.",//getdefaultregion
+										"Gets the level of the summoner.", //getlevel
 										"Gets the rank of the given summoner.", //getrank
 										"Lists what each command does.", //help
 										"Displays the lolking page of the given summoner.",//lolking
@@ -30,6 +31,7 @@ public class Command {
 										"clearnotes",
 										"getchampid <championName>",
 										"getdefaultregion",
+										"getlevel <summonerName> <region>",
 										"getrank <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
 										"help <command>.",
 										"lolking <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
@@ -120,6 +122,14 @@ public class Command {
 			} else if (cmd[0].equals("clearnotes")) {
 				Log.clearFile(new File("notes.txt"));
 				Log.write("Notes cleared.");
+			} else if (cmd[0].equals("getlevel")) {
+				Summoner summ;
+				if (cmd.length > 2) { //If region is provided...
+					summ = new Summoner(cmd[1].toLowerCase(), new Region(cmd[2]));
+				} else {
+					summ = new Summoner(cmd[1].toLowerCase());
+				}
+				Log.write("Summoner level: " + summ.level);
 			}
 		} else {
 			Log.write("Not a valid command.");
