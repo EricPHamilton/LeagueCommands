@@ -17,6 +17,7 @@ Current commands:
 	11. champwiki <champion> - Opens the lolwiki of given champion.
 	12. note <Note> - Allows to keep track of notes. (Ex. Don't dive under tower lvl 1).
 	13. clearnotes - Clears all notes.
+	14. getlevel <name> <region> - Gets the summoner level of the given name.
 	
 Planned features: 
 	-getstat <champ name> <stat>
