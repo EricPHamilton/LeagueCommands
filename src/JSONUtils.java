@@ -37,6 +37,11 @@ public class JSONUtils {
 		return null;
 	}
 	
+	public static JSONObject getStaticChampJSON(Champion champ) throws JSONException, IOException {
+		String apiName = champ.getAPIChampName();
+		return JSONUtils.getJSON("http://ddragon.leagueoflegends.com/cdn/4.20.1/data/en_US/champion/" + apiName + ".json");
+	}
+	
 	private static String readAll(Reader read) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		int i;

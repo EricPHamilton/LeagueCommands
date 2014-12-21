@@ -72,8 +72,8 @@ public class Champion {
 	}
 	
 	//Used for making calls to the DDragon API.
-	public static String getAPIChampName(Champion champ) throws JSONException, IOException {
-		int idOfChamp = champ.id;
+	public String getAPIChampName() throws JSONException, IOException {
+		int idOfChamp = this.id;
 		
 		JSONObject allData = JSONUtils.getJSON("http://ddragon.leagueoflegends.com/cdn/4.20.1/data/en_US/champion.json");
 		

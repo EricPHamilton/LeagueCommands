@@ -57,7 +57,8 @@ public class Command {
 				clearPreviousCommands();
 				CommandWindow.clearTextPane();
 			} else if (cmd[0].equals("getchampid")) {
-				int id = ChampionList.getID(new Champion(cmd[1]));
+				Champion champ = new Champion(cmd[1]);
+				int id = champ.id;
 				if (id != -1) {
 					CommandWindow.addToTextPane("" + id);
 				}
