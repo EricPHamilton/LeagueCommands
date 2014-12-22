@@ -138,7 +138,19 @@ public class Command {
 				Champion champ = new Champion(cmd[1]);
 				try {
 					JSONObject stats = JSONUtils.getChampJSON(champ);
-					System.out.println(stats);
+					if (cmd.length > 2) { //If a button was provided... (If ability is requested)
+						if (cmd[2].equalsIgnoreCase("q")) { //Get data of ability
+							
+						} else if (cmd[2].equalsIgnoreCase("w")) {
+							
+						} else if (cmd[2].equalsIgnoreCase("e")) {
+							
+						} else if (cmd[2].equalsIgnoreCase("r")) {
+							
+						}
+					} else { //Button not provided, get generic champ stats.
+						Log.write(JSONUtils.getChampData(stats, champ));
+					}
 				} catch (JSONException | IOException e) {
 					// TODO Auto-generated catch block
 					Log.write("Champion not found.");

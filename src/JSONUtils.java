@@ -50,4 +50,26 @@ public class JSONUtils {
 		}
 		return sb.toString();
 	}
+	
+	public static String getChampData(JSONObject champJSON, Champion champ) {
+		JSONObject data;
+		try {
+			data = champJSON.getJSONObject("data");
+			JSONObject name = data.getJSONObject(champ.getAPIChampName());
+			
+			String stats = name.getString("stats");
+			stats = stats.replace("{", "");
+			stats = stats.replace("}", "");
+			stats = stats.replaceAll(",", "\n");
+			stats = stats.replaceAll("\"", "");
+			stats = stats.replaceAll(":", " - "); //Improves readability.
+			return stats;
+		} catch (JSONException | IOException e) {
+			// TODO Auto-generated catch block
+			Log.write("JSON/IO exception. Please submit conditions on how you're getting this error if your champ name is correct.");
+			e.printStackTrace();
+		}
+		return null;
+
+	}
 }
