@@ -10,7 +10,7 @@ import org.json.JSONObject;
 public class Command {
 	//This will expand as more commands get implemented
 	//Add more commands IN ALPHABETICAL ORDER.
-	public static String[] commandList = {"champwiki", "clear", "clearnotes", "getchampid", "getdefaultregion", "getlevel", "getrank", "help", "lolking", "note", "opgg", "setdefaultregion", "summid"};
+	public static String[] commandList = {"champwiki", "clear", "clearnotes", "getchampid", "getdefaultregion", "getlevel", "getrank", "getstat", "help", "lolking", "note", "opgg", "setdefaultregion", "summid"};
 	
 	public static String[] commandHelp = {"Displays the lolwiki page of the given champion", //getchampwiki
 										"Clears console and erases previous commands.", //Clear
@@ -19,6 +19,7 @@ public class Command {
 										"Gets the default region specified in the filesystem.",//getdefaultregion
 										"Gets the level of the summoner.", //getlevel
 										"Gets the rank of the given summoner.", //getrank
+										"Gets the stats of a champion's ability.", //getstat
 										"Lists what each command does.", //help
 										"Displays the lolking page of the given summoner.",//lolking
 										"Adds note to a note file", //note
@@ -33,6 +34,7 @@ public class Command {
 										"getdefaultregion",
 										"getlevel <summonerName> <region>",
 										"getrank <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
+										"getstat <champion> <button (q/w/e/r)>",
 										"help <command>.",
 										"lolking <summonerName> <region>. If region defined by setdefault reigion, leave blank.",
 										"note <message>",
@@ -131,6 +133,17 @@ public class Command {
 					summ = new Summoner(cmd[1].toLowerCase());
 				}
 				Log.write("Summoner level: " + summ.level);
+			} else if (cmd[0].equals("getstat")) {
+				//Gets the JSONObject of given champion...
+				Champion champ = new Champion(cmd[1]);
+				try {
+					JSONObject stats = JSONUtils.getChampJSON(champ);
+					System.out.println(stats);
+				} catch (JSONException | IOException e) {
+					// TODO Auto-generated catch block
+					Log.write("Champion not found.");
+					e.printStackTrace();
+				}
 			}
 		} else {
 			Log.write("Not a valid command.");

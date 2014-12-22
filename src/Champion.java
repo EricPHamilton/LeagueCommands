@@ -90,7 +90,7 @@ public class Champion {
 				nameOfChampWithSameID = (((JSONObject)jsonChildObject.get(key)).get("id").toString());
 			}
 		}
-		
 		return nameOfChampWithSameID;
 	}
+
 }
