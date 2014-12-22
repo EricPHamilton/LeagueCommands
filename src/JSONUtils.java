@@ -37,11 +37,6 @@ public class JSONUtils {
 		return null;
 	}
 	
-	public static JSONObject getChampJSON(Champion champ) throws JSONException, IOException {
-		String apiName = champ.getAPIChampName();
-		return JSONUtils.getJSON("http://ddragon.leagueoflegends.com/cdn/4.20.1/data/en_US/champion/" + apiName + ".json");
-	}
-	
 	private static String readAll(Reader read) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		int i;
@@ -51,10 +46,12 @@ public class JSONUtils {
 		return sb.toString();
 	}
 	
-	public static String getChampData(JSONObject champJSON, Champion champ) {
-		JSONObject data;
+	public static String getChampData(Champion champ) {
 		try {
-			data = champJSON.getJSONObject("data");
+			String apiName = champ.getAPIChampName();
+			JSONObject champJSON = JSONUtils.getJSON("http://ddragon.leagueoflegends.com/cdn/4.20.1/data/en_US/champion/" + apiName + ".json");
+
+			JSONObject data = champJSON.getJSONObject("data");
 			JSONObject name = data.getJSONObject(champ.getAPIChampName());
 			
 			String stats = name.getString("stats");
@@ -70,6 +67,6 @@ public class JSONUtils {
 			e.printStackTrace();
 		}
 		return null;
-
 	}
+	
 }
