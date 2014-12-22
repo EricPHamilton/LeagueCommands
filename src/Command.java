@@ -137,15 +137,7 @@ public class Command {
 				//Gets the JSONObject of given champion...
 				Champion champ = new Champion(cmd[1]);
 				if (cmd.length > 2) { //If a button was provided... (If ability is requested)
-					if (cmd[2].equalsIgnoreCase("q")) { //Get data of ability
-						
-					} else if (cmd[2].equalsIgnoreCase("w")) {
-						
-					} else if (cmd[2].equalsIgnoreCase("e")) {
-						
-					} else if (cmd[2].equalsIgnoreCase("r")) {
-						
-					}
+					Log.write(champ.getAbility(cmd[2]));
 				} else { //Button not provided, get generic champ stats.
 					Log.write(JSONUtils.getChampData(champ));
 				}

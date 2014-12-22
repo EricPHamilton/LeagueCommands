@@ -5,6 +5,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Iterator;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -93,4 +94,37 @@ public class Champion {
 		return nameOfChampWithSameID;
 	}
 
+	public String getAbility(String key) {
+		String abilityString = "";
+		if (key.equalsIgnoreCase("q") || key.equalsIgnoreCase("w") || key.equalsIgnoreCase("e") || key.equalsIgnoreCase("r")) {
+			int keyNum = -1;
+			
+			if (key.equalsIgnoreCase("q")) keyNum = 0;
+			else if (key.equalsIgnoreCase("w")) keyNum = 1;
+			else if (key.equalsIgnoreCase("e")) keyNum = 2;
+			else keyNum = 3;
+			
+			try {
+				String apiName = this.getAPIChampName();
+				JSONObject champJSON = JSONUtils.getJSON("http://ddragon.leagueoflegends.com/cdn/4.20.1/data/en_US/champion/" + apiName + ".json");
+				
+				JSONObject data = champJSON.getJSONObject("data");
+				JSONObject name = data.getJSONObject(apiName);
+				
+				JSONArray allSpells = name.getJSONArray("spells");
+				JSONObject spell = (JSONObject) allSpells.get(keyNum);
+				
+				abilityString += spell.getString("id");
+				abilityString += "\n" + "CD: " + spell.getString("cooldownBurn");
+				abilityString += "\n" + "Range: " + spell.getString("rangeBurn");
+				abilityString += "\n" + "Cost: " + spell.getString("costBurn");
+			} catch (IOException | JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
+			abilityString += "Invalid button. Try q/w/e/r.";
+		}
+		return abilityString;
+	}
 }

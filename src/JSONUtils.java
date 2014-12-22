@@ -52,7 +52,7 @@ public class JSONUtils {
 			JSONObject champJSON = JSONUtils.getJSON("http://ddragon.leagueoflegends.com/cdn/4.20.1/data/en_US/champion/" + apiName + ".json");
 
 			JSONObject data = champJSON.getJSONObject("data");
-			JSONObject name = data.getJSONObject(champ.getAPIChampName());
+			JSONObject name = data.getJSONObject(apiName);
 			
 			String stats = name.getString("stats");
 			stats = stats.replace("{", "");
