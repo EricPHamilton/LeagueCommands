@@ -135,7 +135,7 @@ public class Command {
 				Log.write("Summoner level: " + summ.level);
 			} else if (cmd[0].equals("getstat")) {
 				//Gets the JSONObject of given champion...
-				Champion champ = new Champion(cmd[1]);
+				Log.write("-getstat " + cmd[1]);
 				if (cmd.length > 2) { //If a button was provided... (If ability is requested)
 					Log.write(champ.getAbility(cmd[2]));
 				} else { //Button not provided, get generic champ stats.

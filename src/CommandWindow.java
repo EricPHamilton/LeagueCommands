@@ -20,6 +20,7 @@ public class CommandWindow {
 	private JFrame frame;
 	private static int cmdIndex = -1;
 	private final static int pixelsHeightPerLine = 15;
+	private static int linesInTextPane = 0;
 	
 	/**
 	 * Launch the application.
@@ -54,7 +55,7 @@ public class CommandWindow {
 		frame = new JFrame();
 		textPane = new JTextPane();
 
-		frame.setBounds(100, 100, 508, 339);
+		frame.setBounds(100, 100, 508, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		txtBox = new JTextField();
@@ -111,32 +112,38 @@ public class CommandWindow {
 		});
 	}
 
-	public static void addToTextPane(String cmd) {
+	public static void addToTextPane(String s) {
 		String previousText = textPane.getText();
 		String futureText = previousText;
 		
 		int windowHeight = textPane.getHeight();
 		int maxLines = windowHeight / pixelsHeightPerLine - 1;
-		if (countLinesInTextPane() > maxLines) {
-			for (int i = countLinesInTextPane() - maxLines ; i > 0 ; i--) { //Deletes the exact amnt of lines we need for next output to show up.
+		if (linesInTextPane > maxLines) {
+			for (int i = linesInTextPane  - maxLines ; i > 0 ; i--) { //Deletes the exact amnt of lines we need for next output to show up.
 				futureText = futureText.substring(futureText.indexOf('\n') + 1);
+				linesInTextPane--;
 			}
 		}
 		
 		if (!previousText.equals("")) {
 			futureText += "\n";
 		}
-		
-		//TODO: Change to command output.
-		futureText += cmd;
-		textPane.setText(futureText);
 
+		if (s.contains("\n")) {
+			String[] parts = s.split("\n");
+			for (String part : parts) {
+				addToTextPane(part);
+			}
+		} else {
+			futureText += s;
+			linesInTextPane++;
+			textPane.setText(futureText);
+		}
 	}
 	
 	//18 should be max
-	private static int countLinesInTextPane() {
-		String[] lines = textPane.getText().split("\n");
-		return lines.length;
+	private static int getLinesInTextPane() {
+		return linesInTextPane;
 	}
 	
 	public static void clearTextPane() {
