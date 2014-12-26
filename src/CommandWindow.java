@@ -148,5 +148,6 @@ public class CommandWindow {
 	
 	public static void clearTextPane() {
 		textPane.setText("");
+		linesInTextPane = 0;
 	}
 }

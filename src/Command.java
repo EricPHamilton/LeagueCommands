@@ -135,13 +135,18 @@ public class Command {
 				Log.write("Summoner level: " + summ.level);
 			} else if (cmd[0].equals("getstat")) {
 				//Gets the JSONObject of given champion...
-				Log.write("-getstat " + cmd[1]);
+				Champion champ = new Champion(cmd[1]);
+				String formattedString = "";
 				if (cmd.length > 2) { //If a button was provided... (If ability is requested)
-					Log.write(champ.getAbility(cmd[2]));
+					formattedString = "\t" + champ.getAbility(cmd[2]).replaceAll("\n", "\n\t");
 				} else { //Button not provided, get generic champ stats.
-					Log.write(JSONUtils.getChampData(champ));
+					formattedString = "\t" + JSONUtils.getChampData(champ).replaceAll("\n", "\n\t");
+					CommandWindow.clearTextPane();
 				}
+				Log.write("-" + this.toString());
+				Log.write(formattedString);
 			}
+			Log.write("\n");
 		} else {
 			Log.write("Not a valid command.");
 		}
