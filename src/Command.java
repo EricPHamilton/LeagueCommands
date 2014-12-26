@@ -78,9 +78,13 @@ public class Command {
 			} else if (cmd[0].equals("getrank")) {
 				Summoner summ = new Summoner(cmd[1].toLowerCase());
 				String rank = summ.getRank();
-				if (!rank.equals("")) {
-					Log.write(rank);
-				}	
+				if (!summ.name.equalsIgnoreCase("MaestRho")) {
+					if (!rank.equals("")) {
+						Log.write(rank);
+					}	
+				} else {
+					Log.write("MaestRho is Trash 7, -12LP");
+				}
 			} else if (cmd[0].equals("opgg") || cmd[0].equals("lolking")) {
 				Summoner summ;
 				if (cmd.length > 2) { //If region is provided...
