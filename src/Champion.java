@@ -17,6 +17,9 @@ public class Champion {
 	String name;
 	int id;
 	
+	/**
+	 * Creates a Champion object with given name 'name'.
+	 */
 	public Champion (String name) {
 		this.name = name;
 		this.id = getID();
@@ -26,10 +29,18 @@ public class Champion {
 		this.defString = getDefString();
 	}
 	
+	/**
+	 * returns a String representation of Champion object.
+	 */
 	public String toString() {
 		return defString;
 	}
 	
+	/**
+	 * Returns the ID number of the champion object. 
+	 * 
+	 * Called by constructor to give variable id meaningful value.
+	 */
 	public int getID() {
 		String name = this.name.toLowerCase();
 		String line = "";
@@ -48,6 +59,10 @@ public class Champion {
 		}
 	}
 	
+	/**
+	 * Returns the definition String of the given champion.
+	 * ie. "the Dark Child" if given "Annie"
+	 */
 	public String getDefString() {
 		String name = this.name;
 		for (String s : ChampionList.championList) {
@@ -58,6 +73,9 @@ public class Champion {
 		return null;
 	}
 	
+	/**
+	 * Opens the lolWiki page associated with the champion.
+	 */
 	public void openWikiPage() {
 		if (Desktop.isDesktopSupported()) {
 			Desktop d = Desktop.getDesktop();
@@ -94,6 +112,11 @@ public class Champion {
 		return nameOfChampWithSameID;
 	}
 
+	/**
+	 * Gets the ability of the champion binded to the provided key.
+	 * 
+	 * @param key must either be q, w, e, or r.
+	 */
 	public String getAbility(String key) {
 		String abilityString = "";
 		if (key.equalsIgnoreCase("q") || key.equalsIgnoreCase("w") || key.equalsIgnoreCase("e") || key.equalsIgnoreCase("r")) {
