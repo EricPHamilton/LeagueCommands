@@ -14,21 +14,40 @@ public class Summoner {
 	int id;
 	Region reg;
 	int level;
+	String rank;
 	
+	/**
+	 * Main constructor for Summoner Object - Called if region is given in command.
+	 *
+	 * @param name - Name of the summoner
+	 * @param reg - Region of the summoner
+	 */
 	public Summoner (String name, Region reg) {
 		this.name = name;
 		this.reg = reg;
 		this.id = this.getSummonerID();
 		this.level = this.getLevel();
+		this.rank = this.getRank();
 	}
 	
+	/**
+	 * Main constructor for Summoner Object - Called if region is not given in command, region retrieved from regions.txt.
+	 *
+	 * @param name - Name of the summoner
+	 */
 	public Summoner (String name) {
 		this.name = name;
 		this.reg = Region.getDefaultRegion();
 		this.id = this.getSummonerID();
 		this.level = this.getLevel();
+		this.rank = this.getRank();
 	}
 	
+	/**
+	 * Retrieves the Summoner's ID that Riot's API uses to identify specific people.
+	 * 
+	 * Called by constructor to initialize variable id to a meaningful value.
+	 */
 	public int getSummonerID() {
 		String summName = name;
 		String urlRegion = reg.toString().toLowerCase();
@@ -54,6 +73,11 @@ public class Summoner {
 		return id;
 	}
 	
+	/**
+	 * Gets level of Summoner
+	 * 
+	 * Called by constructor to give 'level' a meaningful value.
+	 */
 	public int getLevel() {
 		String urlReg = reg.toURLString();
 		int level = 0;
@@ -77,6 +101,10 @@ public class Summoner {
 		return level;
 	}
 	
+	/**
+	 * Gets rank of Summoner
+	 * 
+	 */
 	public String getRank() {
 		String urlReg = reg.toURLString();
 		String tier = ""; 
@@ -112,6 +140,9 @@ public class Summoner {
 		
 	}
 	
+	/**
+	 * Opens the LoLKing webpage associated with summoner object.
+	 */
 	public void openLolking() {
 		if (Desktop.isDesktopSupported()) {
 			Desktop d = Desktop.getDesktop();
@@ -126,6 +157,9 @@ public class Summoner {
 		}
 	}
 	
+	/**
+	 * Opens the opgg webpage associated with summoner object.
+	 */
 	public void openOPGG() {
 		if (Desktop.isDesktopSupported()) {
 			Desktop d = Desktop.getDesktop();
