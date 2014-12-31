@@ -13,6 +13,9 @@ import org.json.JSONObject;
 
 public class JSONUtils {
 	
+	/**
+	 * Returns JSONObject given by the API Call @param call
+	 */
 	public static JSONObject getJSON(String call) throws IOException, JSONException {
 		InputStream is = new URL(call).openStream();
 		try {
@@ -25,18 +28,11 @@ public class JSONUtils {
 		}
 	}
 	
-	public static JSONArray getJSONArray(String url) {
-		return null;
-	}
-	
-	public static String getData(JSONObject json, String[] dtataNames) {
-		return null;
-	}
-	
-	public static String getData(JSONArray json, String[] dataNames) {
-		return null;
-	}
-	
+	/**
+	 * Reads all text from a BufferedReader
+	 * 
+	 * Used in method getJSON(String call)
+	 */
 	private static String readAll(Reader read) throws IOException {
 		StringBuilder sb = new StringBuilder();
 		int i;
@@ -46,6 +42,9 @@ public class JSONUtils {
 		return sb.toString();
 	}
 	
+	/**
+	 * Returns String representation of Champ data from the DDragon API.
+	 */
 	public static String getChampData(Champion champ) {
 		try {
 			String apiName = champ.getAPIChampName();
