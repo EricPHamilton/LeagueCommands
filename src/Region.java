@@ -12,10 +12,18 @@ public class Region {
 	private final String name;
 	private final String[] regions = {"BR", "EUNE", "EUW", "KR", "LAN", "LAS", "NA", "OCE", "RU", "TR"};
 	
+	/**
+	 * Constructor for Region object.
+	 * 
+	 * @param name - Character code defining a region.
+	 */
 	public Region(String name) {
 		this.name = name;
 	}
 	
+	/**
+	 * Returns true if Region object is a valid region according to Riot's API.
+	 */
 	public boolean isValidRegion() {
 		String s = this.name;
 		for (String reg : regions) {
@@ -26,14 +34,23 @@ public class Region {
 		return false;
 	}
 	
+	/**
+	 * Returns all capital String representation of Region Object
+	 */
 	public String toString() {
 		return name;
 	}
 	
+	/**
+	 * Returns lowercase String representation of Region Object for use in URLs
+	 */
 	public String toURLString() {
 		return name.toLowerCase();
 	}
 	
+	/**
+	 * Writes @param reg String representation to file "region.txt".
+	 */
 	@SuppressWarnings("resource")
 	public static void setDefaultRegion(Region reg) {
 		if(reg.isValidRegion()) {
@@ -51,6 +68,9 @@ public class Region {
 		}
 	}
 	
+	/**
+	 * Returns a Region object representing the Region written to file "region.txt"
+	 */
 	public static Region getDefaultRegion() {
 		FileReader file;
 		try {
