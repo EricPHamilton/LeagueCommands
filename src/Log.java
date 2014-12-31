@@ -10,10 +10,18 @@ import java.io.UnsupportedEncodingException;
 
 
 public class Log {
+	/**
+	 * Writes @param s to command window. 
+	 * 
+	 * Created to make adding text easier (Log.write("") is easier than CommandWindow.addToTextPane(""))
+	 */
 	public static void write(String s) {
 		CommandWindow.addToTextPane(s);
 	}
 	
+	/**
+	 * Writes @param s to File @param f
+	 */
 	public static void writeToFile(String s, File f) {
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter(f, true));
@@ -25,6 +33,9 @@ public class Log {
 		}
 	}
 	
+	/**
+	 * Sets text of File @param f to blank - effectively deleting the text from the file.
+	 */
 	public static void clearFile(File f) {
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter(f));
