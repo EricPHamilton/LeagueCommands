@@ -112,6 +112,9 @@ public class CommandWindow {
 		});
 	}
 
+	/**
+	 * Adds the string s to the Text Pane and displays it to the user.
+	 */
 	public static void addToTextPane(String s) {
 		String previousText = textPane.getText();
 		String futureText = previousText;
@@ -141,11 +144,16 @@ public class CommandWindow {
 		}
 	}
 	
-	//18 should be max
+	/**
+	 * Returns the number of lines of text in the Text Pane.
+	 */
 	private static int getLinesInTextPane() {
 		return linesInTextPane;
 	}
 	
+	/**
+	 * Clears all text in text pane.
+	 */
 	public static void clearTextPane() {
 		textPane.setText("");
 		linesInTextPane = 0;

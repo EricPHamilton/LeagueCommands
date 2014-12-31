@@ -1,5 +1,7 @@
 
 public class ChampionList {
+	//Array of all LoL champions and their IDs in the following format: 
+	//ID - name, description
 	public static String[] championList = {
 		"1 - Annie, the Dark Child",
 		"2 - Olaf, the Berserker",
