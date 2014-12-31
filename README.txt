@@ -1,4 +1,4 @@
-This program will eventually fetch LoL data using Riot's API using CLI. 
+Fetches data from the Riot and DDragon API using instructions from User's Commands. The program mimics the look and usability of Command Line, in order to promote efficiency and data retrieval speeds.
 
 If you have ideas, e-mail me at ehamilton13@gmail.com
 
