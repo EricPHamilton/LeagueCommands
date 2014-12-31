@@ -77,7 +77,7 @@ public class Command {
 				Log.write("Default Region: " + Region.getDefaultRegion().toString());
 			} else if (cmd[0].equals("getrank")) {
 				Summoner summ = new Summoner(cmd[1].toLowerCase());
-				String rank = summ.getRank();
+				String rank = summ.rank;
 				if (!summ.name.equalsIgnoreCase("MaestRho")) {
 					if (!rank.equals("")) {
 						Log.write(rank);
