@@ -156,6 +156,9 @@ public class Command {
 		}
 	}
 	
+	/**
+	 * Returns string representation of Command object.
+	 */
 	public String toString() {
 		String s = "";
 		for (int i = 0 ; i < cmd.length ; i++) {
@@ -167,6 +170,9 @@ public class Command {
 		return s;
 	}
 	
+	/**
+	 * Returns true if cmd[0] is defined in the array "commandList"
+	 */
 	public boolean isValidCommand() {
 		String cmdName = cmd[0];
 		for (String s : commandList) {
@@ -177,18 +183,32 @@ public class Command {
 		return false;
 	}
 	
+	/**
+	 * returns Command at index @param i in list "previousCommands".
+	 */
 	public static Command getCommand(int i) {
 		return previousCommands.get(i);
 	}
 	
+	/**
+	 * Adds @param c to list "previousCommands".
+	 */
 	public static void addPreviousCommand(Command c) {
 		previousCommands.add(c);
 	}
 	
+	/**
+	 * Gets the index of an old command. 
+	 * 
+	 * Used for arrow key up/down navigation of commands.
+	 */
 	public static int getIndexOfOldCommand(String s) {
 		return previousCommands.indexOf(s);
 	}
 	
+	/**
+	 * Clears list previousCommands. Used if the command "clear" is written.
+	 */
 	public static void clearPreviousCommands() {
 		previousCommands.clear();
 	}
