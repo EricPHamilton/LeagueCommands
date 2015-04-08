@@ -55,7 +55,7 @@ public class CommandWindow {
 		frame = new JFrame();
 		textPane = new JTextPane();
 
-		frame.setBounds(100, 100, 508, 531);
+		frame.setBounds(100, 100, 652, 531);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		txtBox = new JTextField();
@@ -122,7 +122,7 @@ public class CommandWindow {
 		int windowHeight = textPane.getHeight();
 		int maxLines = windowHeight / pixelsHeightPerLine - 1;
 		if (linesInTextPane > maxLines) {
-			for (int i = linesInTextPane  - maxLines ; i > 0 ; i--) { //Deletes the exact amnt of lines we need for next output to show up.
+			for (int i = linesInTextPane  - maxLines; i > 0 ; i--) { //Deletes the exact amnt of lines we need for next output to show up.
 				futureText = futureText.substring(futureText.indexOf('\n') + 1);
 				linesInTextPane--;
 			}
@@ -136,6 +136,7 @@ public class CommandWindow {
 			String[] parts = s.split("\n");
 			for (String part : parts) {
 				addToTextPane(part);
+				linesInTextPane++;
 			}
 		} else {
 			futureText += s;

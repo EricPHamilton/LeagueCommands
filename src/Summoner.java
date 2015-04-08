@@ -25,9 +25,6 @@ public class Summoner {
 	public Summoner (String name, Region reg) {
 		this.name = name;
 		this.reg = reg;
-		this.id = this.getSummonerID();
-		this.level = this.getLevel();
-		this.rank = this.getRank();
 	}
 	
 	/**
@@ -38,9 +35,6 @@ public class Summoner {
 	public Summoner (String name) {
 		this.name = name;
 		this.reg = Region.getDefaultRegion();
-		this.id = this.getSummonerID();
-		this.level = this.getLevel();
-		this.rank = this.getRank();
 	}
 	
 	/**
@@ -63,7 +57,7 @@ public class Summoner {
 			String idString = summIDChildObject.getString("id");
 			id = Integer.parseInt(idString);
 		} catch (IOException e) {
-			Log.write("Summ name/region combo not found for ID.");
+			Log.write("File not found on RiotAPI");
 			e.printStackTrace();
 		} catch (JSONException e) {
 			Log.write("JSONException. Report on thread please with command that causes this to occur.");
@@ -91,7 +85,7 @@ public class Summoner {
 			String levelString = levelChildObject.getString("summonerLevel");
 			level = Integer.parseInt(levelString);
 		} catch (IOException e) {
-			Log.write("Summ name/region combo not found for level.");
+			Log.write("File not found on RiotAPI");
 			e.printStackTrace();
 		} catch (JSONException e) {
 			Log.write("JSONException. Report on thread please with command that causes this to occur.");
@@ -111,9 +105,9 @@ public class Summoner {
 		String div = "";
 		String lp = "";
 		
-		if (this.id != -1) { //If there was an error finding the summonerID
+		if (JSONUtils.addIDToString(this) != -1) { //If there was an error finding the summonerID
 			try {
-				JSONObject leagueCall = JSONUtils.getJSON("https://" + urlReg + ".api.pvp.net/api/lol/" + urlReg + "/v2.5/league/by-summoner/" + this.id + "/entry?api_key=" + APIKey.getKey());
+				JSONObject leagueCall = JSONUtils.getJSON("https://" + urlReg + ".api.pvp.net/api/lol/" + urlReg + "/v2.5/league/by-summoner/" + JSONUtils.addIDToString(this) + "/entry?api_key=" + APIKey.getKey());
 				JSONArray dataArr = leagueCall.getJSONArray("" + getSummonerID());
 				
 				JSONObject firstObj = dataArr.getJSONObject(0);
@@ -126,7 +120,7 @@ public class Summoner {
 				
 				return (name + " is " + tier + " " + div + ", " + lp + " LP.");
 			} catch (IOException e) {
-				Log.write("Summ name/region combo not found for rank.");
+				Log.write("User might not have ranked data to display.");
 				e.printStackTrace();
 			} catch (JSONException e) {
 				Log.write("JSONException. Report on thread please with command that causes this to occur.");
@@ -147,7 +141,7 @@ public class Summoner {
 		if (Desktop.isDesktopSupported()) {
 			Desktop d = Desktop.getDesktop();
 			try {
-				d.browse(new URI("http://www.lolking.net/summoner/" + reg.toURLString() + "/" + id));
+				d.browse(new URI("http://www.lolking.net/summoner/" + reg.toURLString() + "/" + JSONUtils.addIDToString(this)));
 			} catch (IOException | URISyntaxException e) {
 				Log.write("IOException or URLSyntaxException. Check summoner name + region.");
 				e.printStackTrace();

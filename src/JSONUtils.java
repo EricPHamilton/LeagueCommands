@@ -68,4 +68,12 @@ public class JSONUtils {
 		return null;
 	}
 	
+	public static int addIDToString(Summoner sum) {
+		if (sum.id != 0) {
+			return sum.id;
+		} else {
+			return sum.getSummonerID();
+		}
+	}
+	
 }
