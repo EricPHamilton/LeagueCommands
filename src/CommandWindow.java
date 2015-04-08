@@ -59,9 +59,11 @@ public class CommandWindow {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		txtBox = new JTextField();
+		txtBox.setFocusTraversalKeysEnabled(false);
 		txtBox.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
+				//Handles Command entering
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					String cmd = txtBox.getText();
 					txtBox.setText("");
@@ -73,6 +75,7 @@ public class CommandWindow {
 					
 					newCmd.execute();
 
+				//Handles Up/Down command memory
 				} else if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) {
 					//goUp is true if user pressed "up" instead of "down"
 					boolean goUp = e.getKeyCode() == KeyEvent.VK_UP; 
@@ -86,6 +89,32 @@ public class CommandWindow {
 						if (cmdIndex + 1 <= Command.previousCommands.size()-1) {
 							cmdIndex++;
 							txtBox.setText(Command.getCommand(cmdIndex).toString());
+						}
+					}
+				// Handles Auto-completion
+				} else if (e.getKeyCode() == KeyEvent.VK_TAB) {
+					String curText = txtBox.getText();
+					
+					//If there is nothing in the text box, leave this block.
+					if (curText.equals("")) {
+						return;
+					}
+
+					for (int i = 0 ; i < Command.commandList.length ; i++) {
+						//If a command is already typed in, go to the next one in the list.
+						if (Command.commandList[i].equalsIgnoreCase(curText)) {
+					
+							//If there are no more commands to go through... Prevents Index Out Of Bounds.
+							if (i == Command.commandList.length - 1) {
+								txtBox.setText("");
+							} else {
+								txtBox.setText(Command.commandList[i+1]);
+							}
+							return;
+						//If a part of a command is already typed in, auto complete the command.
+						} else if (Command.commandList[i].startsWith(curText)) {
+							txtBox.setText(Command.commandList[i]);
+							return;
 						}
 					}
 					

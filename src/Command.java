@@ -10,7 +10,7 @@ import org.json.JSONObject;
 public class Command {
 	//This will expand as more commands get implemented
 	//Add more commands IN ALPHABETICAL ORDER.
-	public static String[] commandList = {"champwiki", "clear", "clearnotes", "getchampid", "getdefaultregion", "getlevel", "getrank", "getability", "getsummid", "help", "lolking", "note", "opgg", "setdefaultregion"};
+	public static String[] commandList = {"champwiki", "clear", "clearnotes", "getability", "getchampid", "getdefaultregion", "getlevel", "getrank", "getsummid", "help", "lolking", "note", "opgg", "setdefaultregion"};
 	
 	public static String[] commandHelp = {"Displays the lolwiki page of the given champion", //champwiki
 										"Clears console and erases previous commands.", //Clear
